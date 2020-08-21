@@ -1,4 +1,4 @@
-package mocking.service.constant;
+package mocking.service.entity;
 
 import com.google.gson.JsonObject;
 
@@ -13,5 +13,11 @@ public class DefaultResponse {
     }
 
     private DefaultResponse() {
+    }
+
+    public static JsonObject errorResponseWithMessage(String message) {
+        JsonObject result = RESPONSE_ERROR.deepCopy();
+        result.addProperty("message", message);
+        return result;
     }
 }

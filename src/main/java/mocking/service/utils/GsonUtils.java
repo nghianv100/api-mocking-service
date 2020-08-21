@@ -18,4 +18,8 @@ public class GsonUtils {
         return GSON.toJson(obj);
     }
 
+    public static <T> T fromJson(String json, Class<T> clazz) {
+        return GSON.fromJson(json, clazz);
+    }
+
 }
