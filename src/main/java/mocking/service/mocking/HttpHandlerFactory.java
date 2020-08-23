@@ -5,8 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import mocking.service.entity.Method;
+import mocking.service.entity.SetupRequestEntity;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Getter
 @Setter
@@ -14,22 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class HttpHandlerFactory {
 
-    private HttpGetHandler httpGetHandler = new HttpGetHandler();
+    private ConcurrentMap<Method, MockingHandler<HttpServletRequest, JsonObject>> httpHandlers = new ConcurrentHashMap<>();
 
-    public JsonObject getMock(HttpServletRequest request) {
-        return httpGetHandler.handle(request);
+    private HttpHandlerFactory() {
     }
 
-    public JsonObject postMock(HttpServletRequest request) {
-        return null;
+    private HttpHandlerFactory(SetupRequestEntity setupEntity) {
+
     }
 
-    public JsonObject putMock(HttpServletRequest request) {
-        return null;
-    }
+    public void putMockHandler(SetupRequestEntity setupEntity) {
 
-    public JsonObject deleteMock(HttpServletRequest request) {
-        return null;
     }
-
 }
